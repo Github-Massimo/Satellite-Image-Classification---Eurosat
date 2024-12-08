@@ -14,11 +14,11 @@ The challlenge is to do Land Use and Land Cover Classification on the EuroSAT Se
 - The original Eurosat Dataset contains 27'000 13x64x64 pixel images with 10 classes.
 - The pictures come in 13 spectral bands:
 
-    <img src="images/bands.png" width="20%" alt="Spectral bands"/>
+    <img src="images/bands.png" width="60%" alt="Spectral bands"/>
 
 - Example of Sentinel-2 Multi Spectral Imaging:
 
-    <img src="images/example_ms.png" width="30%" alt="Example"/>
+    <img src="images/example_ms.png" width="70%" alt="Example"/>
 
 - Sentinel-2 gives the image products.
     - Level-1C: Top of the atmosphere reflectance.
@@ -43,7 +43,7 @@ The challlenge is to do Land Use and Land Cover Classification on the EuroSAT Se
 - Major TOM is another dataset from esa that does have Level-1C and Level-2A data:
 
        Level 1C                               Level 2A
-    <img src="images/majortom_1c.png" width="20%" alt="Major TOM 1C"/>    <img src="images/majortom_2a.png" width="20%" alt="Major TOM 2A"/>
+    <img src="images/majortom_1c.png" width="50%" alt="Major TOM 1C"/>    <img src="images/majortom_2a.png" width="50%" alt="Major TOM 2A"/>
 
 ### Training Data and Major TOM:
 | Original Training Image 1C | Major TOM 1C Equivalent | Major TOM 2A Equivalent |
@@ -69,15 +69,15 @@ The challlenge is to do Land Use and Land Cover Classification on the EuroSAT Se
     - z: random noise (dropout in multiple generator layers is used as noise)
     - y: output image
 
-    <img src="images/cgan.png" width="50%" alt="CGAN"/>
+    <img src="images/cgan.png" width="60%" alt="CGAN"/>
 
 - Used for image-to-image translation between paired images.
 
-    <img src="images/Lcgan.png" width="30%" alt="LCGAN"/>
+    <img src="images/Lcgan.png" width="50%" alt="LCGAN"/>
 
 - Benefits from mix with traditional loss (Generator additional task to be near ground truth output)
 
-    <img src="images/Gcgan.png" width="50%" alt="LCGAN"/>
+    <img src="images/Gcgan.png" width="90%" alt="LCGAN"/>
 
 ### Pix2Pix
 - Generator:
@@ -87,14 +87,14 @@ The challlenge is to do Land Use and Land Cover Classification on the EuroSAT Se
     - We define 4 input and 4 output channel and downsample 6 times (i.e. images 1x1 at bottleneck) 
     - Blocks are combinations of Conv2d, LeakyReLU, normalization/droput layers and ConvTranspose2d
 
-    <img src="images/pix2pixgenerator.png" width="40%" alt="Pix2Pix Generator"/>
+    <img src="images/pix2pixgenerator.png" width="70%" alt="Pix2Pix Generator"/>
 
 - Discriminator:
     - **Convolutional PatchGAN**
     - By evaluating small localized patches independently, this is focussing on local structures. 
     - We define 2 layers which are combinations of Conv2d and LeakyReLU
 
-    <img src="images/pix2pixdiscriminator.png" width="30%" alt="Pix2Pix Discriminator"/>
+    <img src="images/pix2pixdiscriminator.png" width="50%" alt="Pix2Pix Discriminator"/>
 
     
 ### Learning on Major TOM
@@ -108,7 +108,7 @@ The challlenge is to do Land Use and Land Cover Classification on the EuroSAT Se
 - D_real and D_fake are the discriminator real and fake loss, which measure how well the discriminator is able to recognize real images as real and generated images as fake. Lower losses indicate that the discriminator is improving its ability to discriminate generated images.
 - Ideally, all losses should be reasonably low. However, as often in GANs, they do not converge (see [link](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/docs/qa.md)). Only the G_L1 should go down over time, which it slightly does in our case (see [link](https://github.com/phillipi/pix2pix/issues/21)).
 
-    <img src="images/cganlosses.png" width="50%" alt="CGAN Loss"/>
+    <img src="images/cganlosses.png" width="80%" alt="CGAN Loss"/>
 
 #### Test Results on Major TOM:
 - This model was now with the same specifications used on 50 test images which were save to a folder.
@@ -117,7 +117,7 @@ The challlenge is to do Land Use and Land Cover Classification on the EuroSAT Se
 
 | | | |
 |:----------------------:|:----------------------:|:----------------------:|
-| <img src="images/realA.png" width="60%" alt="Real A"/> | <img src="images/realB.png" width="60%" alt="Real B"/> | <img src="images/fakeB.png" width="60%" alt="Fake B"/> |
+| <img src="images/realA.png" width="80%" alt="Real A"/> | <img src="images/realB.png" width="80%" alt="Real B"/> | <img src="images/fakeB.png" width="80%" alt="Fake B"/> |
 
 
 ### Transform our real training data
@@ -130,7 +130,7 @@ The challlenge is to do Land Use and Land Cover Classification on the EuroSAT Se
 
 | | | |
 |:----------------------:|:----------------------:|:----------------------:|
-| <img src="images/datarealA.png" width="60%" alt="Real A"/> | <img src="images/datarealB.png" width="60%" alt="Real B"/> | <img src="images/datafakeB.png" width="60%" alt="Fake B"/> |
+| <img src="images/datarealA.png" width="80%" alt="Real A"/> | <img src="images/datarealB.png" width="80%" alt="Real B"/> | <img src="images/datafakeB.png" width="80%" alt="Fake B"/> |
 
 
 ## Train the image Classifier on our transformed training data
@@ -142,13 +142,13 @@ The challlenge is to do Land Use and Land Cover Classification on the EuroSAT Se
 - We train for 10 epochs.
 - Total params 23,521,418
 
-    <img src="images/resnet50.png" width="40%" alt="ResNet50"/>
+    <img src="images/resnet50.png" width="70%" alt="ResNet50"/>
 
 ### losses
 - Losses converge to each other and zero.
 - Validation accuracy is relatively stable.
 
-    <img src="images/trainvalloss.png" width="40%" alt="Train and Val Loss"/>
+    <img src="images/trainvalloss.png" width="80%" alt="Train and Val Loss"/>
 
 ## Make predictions on the test set
 - The accuracy on the test set is **64%**
