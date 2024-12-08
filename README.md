@@ -43,7 +43,7 @@ The challlenge is to do Land Use and Land Cover Classification on the EuroSAT Se
 - Major TOM is another dataset from esa that does have Level-1C and Level-2A data:
 
        Level 1C                               Level 2A
-    <img src="images/majortom_1c.png" width="50%" alt="Major TOM 1C"/>    <img src="images/majortom_2a.png" width="50%" alt="Major TOM 2A"/>
+    <img src="images/majortom_1c.png" width="40%" alt="Major TOM 1C"/>    <img src="images/majortom_2a.png" width="40%" alt="Major TOM 2A"/>
 
 ### Training Data and Major TOM:
 | Original Training Image 1C | Major TOM 1C Equivalent | Major TOM 2A Equivalent |
